@@ -1,15 +1,17 @@
-#!/usr/bin/python3
+#!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 
+import urllib2
+import urllib
 import pprint
-import xmlrpc.client
-import sys
+import xmlrpclib
+import sys 
 import time 
 from time import gmtime, strftime
-import urllib.parse
-import urllib.request
 import os
 import subprocess
+
+# http://effbot.org/media/downloads/xmlrpclib-1.0.1.zip
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -20,16 +22,20 @@ hostname = sys.argv[1]
 
 
 # API production connection
-api = xmlrpc.client.ServerProxy('https://rpc.gandi.net/xmlrpc/')
+api = xmlrpclib.ServerProxy('https://rpc.gandi.net/xmlrpc/')
 
 
 # API key
 apikey = ''
 
 
+version = api.version.info(apikey)
+pp.pprint(version)
+
+
 # vm specifity
-vm_spec = {'datacenter_id' : 1, 
-           'cores' : 1, 
+vm_spec = {'datacenter_id' : 1,  
+           'cores' : 1,  
            'memory' : 1024,
            'hostname' : hostname, 
            'login' : 'administrateur', 
@@ -84,13 +90,22 @@ IpAd1 = ips[0]['ip']
 pp.pprint(IpAd1) 
 
 
-# ./sendToCuberiteServer update server66 ipv4 6.6.6.6
 
-fullPath = "/home/pi/JEUX/MINECRAFT.servcraft/Serveur/cuberite/Server/Plugins/GandiCraft/gandiapi/"
-print("Commande: " + "sendToCuberiteServer update " + hostname + " ipv4 " + IpAd1)
-p = subprocess.Popen(fullPath + "sendToCuberiteServer update " + hostname + " ipv4 " + IpAd1 , stdout=subprocess.PIPE, shell=True)
-(output, err) = p.communicate()
-print(output)
 
-print("*****************************************************")
-sys.exit(0)
+
+# Send request to the Cuberite server
+password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+top_level_url = 'http://127.0.0.1:8080/webadmin/GandiCraft/Gandi'
+password_mgr.add_password(None, top_level_url, 'admin', 'admin')
+
+handler = urllib2.HTTPBasicAuthHandler(password_mgr)
+opener = urllib2.build_opener(handler)
+urllib2.install_opener(opener)
+
+headers = {"Content-type": "application/x-www-form-urlencoded",}
+uri = 'http://127.0.0.1:8080/webadmin/GandiCraft/Gandi'
+data = urllib.urlencode({'action': 'update', 'name': hostname, 'field': 'ipv4', 'value': IpAd1})
+
+req = urllib2.Request(uri,data,headers)
+result = urllib2.urlopen(req)
+result.read()

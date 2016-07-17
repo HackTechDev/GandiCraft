@@ -1,13 +1,13 @@
-#!/usr/bin/python3
+#!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 
 import pprint
-import xmlrpc.client
+import xmlrpclib
 import sys
 import time 
 from time import gmtime, strftime
-import urllib.parse
-import urllib.request
+import urllib
+import urllib2
 import os
 import subprocess
 
@@ -20,7 +20,7 @@ hostname = sys.argv[1]
 
 
 # API production connection
-api = xmlrpc.client.ServerProxy('https://rpc.gandi.net/xmlrpc/')
+api = xmlrpclib.ServerProxy('https://rpc.gandi.net/xmlrpc/')
 
 
 # API key
