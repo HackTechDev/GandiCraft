@@ -8,10 +8,12 @@ import (
     "os"
 )
 
-// ./GandiCreateServer serverInfo server66 ipv4 6.6.6.6
+
+// Manual update:
+// ./sendToCuberiteServer update server66 ipv4 6.6.6.6
 
 func main() {
-    fmt.Println("GandiCreateServer")
+    fmt.Println("sendToCuberiteServer")
 
 
     action := os.Args[1]
@@ -31,7 +33,7 @@ func main() {
 
 
 // Post URL:
-// http://127.0.0.1:8080/webadmin/GandiCraft/Gandi?action=serverInfo&name=server01&field=ipv4&value=7.77.7.7
+// http://127.0.0.1:8080/webadmin/GandiCraft/Gandi?action=update&name=server01&field=ipv4&value=7.77.7.7
 
 func CuberiteServerRequest(data url.Values) {
     client := &http.Client{}

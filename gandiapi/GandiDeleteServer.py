@@ -24,7 +24,7 @@ api = xmlrpc.client.ServerProxy('https://rpc.gandi.net/xmlrpc/')
 
 
 # API key
-apikey = 'APIKEY'
+apikey = ''
 
 print("*****************************************************")
 print("List of Virtual Machine")

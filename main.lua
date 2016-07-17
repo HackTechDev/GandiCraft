@@ -17,6 +17,10 @@ CURRENTSERVERBLOCKX = 0;
 CURRENTSERVERBLOCKY = 0;
 CURRENTSERVERBLOCKZ = 0;
 
+-- Production
+PRODUCTION = 1
+
+
 -- Tick is triggered by cPluginManager.HOOK_TICK
 function Tick(TimeDelta)
     UpdateQueue:update(MAX_BLOCK_UPDATE_PER_TICK)
@@ -212,10 +216,13 @@ function GandiCommand(Split, Player)
 
                     CreateServer(Split, Player)
 
-                    -- In Real Life
                     -- Create the server via the Gandi API
-                    -- Assign the "real life" ip address 
-                    -- r = os.execute("python3 " .. PLUGIN:GetLocalFolder() .. "/gandiapi/" .. command .. ".py" .. " " .. Split[3] .. " &")
+                    -- Assign the "real life" ip address
+                    if PRODUCTION == 1
+                    then
+                        Player:SendMessage("Execute Python script")
+                        r = os.execute("python3 " .. PLUGIN:GetLocalFolder() .. "/gandiapi/" .. command .. ".py" .. " " .. Split[3] .. " &")
+                    end
 
                     Player:SendMessage("Gandi CLI: " .. command)
     
@@ -229,9 +236,12 @@ function GandiCommand(Split, Player)
 
                     DeleteServer(Split, Player)
 
-                    -- In Real Life
                     -- Delete the server via the Gandi API
-                    --r = os.execute("python3 " .. PLUGIN:GetLocalFolder() .. "/gandiapi/" .. command .. ".py" .. " " .. Split[3] .. " &")
+                    if PRODUCTION == 1
+                    then
+                        Player:SendMessage("Execute Python script")
+                        r = os.execute("python3 " .. PLUGIN:GetLocalFolder() .. "/gandiapi/" .. command .. ".py" .. " " .. Split[3] .. " &")
+                    end
 
                     Player:SendMessage("Gandi CLI: " .. command)
     

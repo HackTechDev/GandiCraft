@@ -24,7 +24,7 @@ api = xmlrpc.client.ServerProxy('https://rpc.gandi.net/xmlrpc/')
 
 
 # API key
-apikey = 'APIKEY'
+apikey = ''
 
 
 # vm specifity
@@ -38,7 +38,7 @@ vm_spec = {'datacenter_id' : 1,
 
 # disk specifity
 disk_spec = {'datacenter_id' : 1,
-             'name' : 'sysdisk', 
+             'name' : 'sysdisk' + hostname, 
              'size' : 10240}
 
 
@@ -84,11 +84,11 @@ IpAd1 = ips[0]['ip']
 pp.pprint(IpAd1) 
 
 
-# ./GandiCreateServer serverInfo server66 ipv4 6.6.6.6
+# ./sendToCuberiteServer update server66 ipv4 6.6.6.6
 
 fullPath = "/home/pi/JEUX/MINECRAFT.servcraft/Serveur/cuberite/Server/Plugins/GandiCraft/gandiapi/"
-print("Commande: " + "sendToCuberiteServer serverInfo " + hostname + " ipv4 " + IpAd1)
-p = subprocess.Popen(fullPath + "sendToCuberiteServer serverInfo " + hostname + " ipv4 " + IpAd1 , stdout=subprocess.PIPE, shell=True)
+print("Commande: " + "sendToCuberiteServer update " + hostname + " ipv4 " + IpAd1)
+p = subprocess.Popen(fullPath + "sendToCuberiteServer update " + hostname + " ipv4 " + IpAd1 , stdout=subprocess.PIPE, shell=True)
 (output, err) = p.communicate()
 print(output)
 

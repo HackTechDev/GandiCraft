@@ -1,5 +1,5 @@
 -- Post URL:
--- http://192.168.1.11:8080/webadmin/GandiCraft/Gandi?action=serverInfo&name=server01&field=ipv4&value=7.77.7.7
+-- http://192.168.1.11:8080/webadmin/GandiCraft/Gandi?action=update&name=server01&field=ipv4&value=7.77.7.7
 function HandleRequest_Gandi(Request)
     
     content = "[gandiclient]"
@@ -8,16 +8,16 @@ function HandleRequest_Gandi(Request)
 
         action = Request.PostParams["action"]
 
-        -- Get server information
 
+        -- Update server
         name = Request.PostParams["name"]
         field = Request.PostParams["field"]
         value = Request.PostParams["value"]
 
        
-        if action == "serverInfo"
+        if action == "update"
         then
-            LOG("EVENT - serverInfos")
+            LOG("EVENT - update server")
             LOG("Update server with name: " .. name)
                
             if field == "ipv4" then
@@ -36,6 +36,7 @@ function HandleRequest_Gandi(Request)
         content = content .. "{error:\"action requested\"}"
 
     end
+
 
     content = content .. "[/gandiclient]"
 
