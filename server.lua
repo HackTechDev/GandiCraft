@@ -1,6 +1,7 @@
 -- Gandi CLI: Assemble a server
 -- Assemble Gandi server
 -- http://api-docs.cuberite.org/Globals.html 
+
 function AssembleServer(World, Player)
     LOG("Assemble server")
     y = Player:GetPosY() 
@@ -32,6 +33,31 @@ function AssembleServer(World, Player)
     setBlock(UpdateQueue, Player:GetPosX() + 3, Player:GetPosY() + 2, Player:GetPosZ() + 3, 77, 5)
     setBlock(UpdateQueue, Player:GetPosX() + 3, Player:GetPosY() + 2, Player:GetPosZ() + 4, 77, 5)
 
+    signPosX = Player:GetPosX() + 2
+    signPosY = y + 1
+    signPosZ = Player:GetPosZ() + 1
+    addSign(Player, signPosX,signPosY,signPosZ)
+    updateSign(UpdateQueue,signPosX,signPosY,signPosZ, "", "Player", "", "", 2)
+
+    signPosX = Player:GetPosX() + 3
+    signPosY = y + 1
+    signPosZ = Player:GetPosZ() + 1
+    addSign(Player, signPosX,signPosY,signPosZ)
+    updateSign(UpdateQueue,signPosX,signPosY,signPosZ, "Server01", "192.16.1.1", "", "", 2)
+
+    signPosX = Player:GetPosX() + 4
+    signPosY = y + 1
+    signPosZ = Player:GetPosZ() + 1
+    addSign(Player, signPosX,signPosY,signPosZ)
+    updateSign(UpdateQueue,signPosX,signPosY,signPosZ, "CPU: 16", "Mem: 24", "", "", 2)
+
+end
+
+
+function addSign(Player, signPosX,signPosY,signPosZ)
+    Player:GetWorld():SetBlock(signPosX,signPosY,signPosZ, E_BLOCK_WALLSIGN, E_META_CHEST_FACING_ZM)
+    Player:GetWorld():SetSignLines(signPosX,signPosY,signPosZ, "", "", "", "")
+    return true
 end
 
 -- Gandi CLI: Disassemble a server
