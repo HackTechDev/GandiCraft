@@ -176,6 +176,7 @@ function GandiCommand(Split, Player)
                 -- Assemble a server
                 if Split[2] == "assemble"
                 then
+                    -- /gandi assemble server
                     if Split[3] == "server" 
                     then
                         EntireCommand = table.concat(Split, "_")
@@ -193,6 +194,7 @@ function GandiCommand(Split, Player)
                 -- Disassemble a server
                 if Split[2] == "disassemble"
                 then
+                    -- /gandi disassemble server
                     if Split[3] == "server" 
                     then
                         EntireCommand = table.concat(Split, "_")
@@ -208,8 +210,11 @@ function GandiCommand(Split, Player)
                 end
 
 
+
+
                 -- Create/Initialize a server 
-                -- with a fake ip address               
+                -- with a fake ip address      
+                -- /gandi create <server name>         
                 if Split[2] == "create" 
                 then
                     command = "GandiCreateServer"
@@ -230,6 +235,7 @@ function GandiCommand(Split, Player)
                 end
 
                 -- Delete a server 
+                -- /gandi delete <server name>
                 if Split[2] == "delete" 
                 then
                     command = "GandiDeleteServer"
@@ -249,12 +255,12 @@ function GandiCommand(Split, Player)
                 end
 
 
+                --               (name, field, value)
+                -- /gandi update server01 ipv3 6.6.6.6
                 if Split[2] == "update" 
                 then
                     Player:SendMessage("Gandi CLI: update")
     
-                    -- (name, field, value)
-                    -- /gandi update server01 ipv3 6.6.6.6
                     UpdateServer(Split, Player)
 
                 end

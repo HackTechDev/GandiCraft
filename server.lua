@@ -38,6 +38,9 @@ function AssembleServer(World, Player)
     signPosZ = Player:GetPosZ() + 1
     addSign(Player, signPosX,signPosY,signPosZ)
     updateSign(UpdateQueue,signPosX,signPosY,signPosZ, "", "Player", "", "", 2)
+    Player:SendMessageSuccess("Add sign " .. signPosX .. " " .. signPosY .. " " .. signPosZ);
+    LOG("Add sign #1 : " .. signPosX .. " " .. signPosY .. " " .. signPosZ)
+
 
     signPosX = Player:GetPosX() + 3
     signPosY = y + 1
@@ -50,7 +53,7 @@ function AssembleServer(World, Player)
     signPosZ = Player:GetPosZ() + 1
     addSign(Player, signPosX,signPosY,signPosZ)
     updateSign(UpdateQueue,signPosX,signPosY,signPosZ, "CPU: 16", "Mem: 24", "", "", 2)
-
+    
 end
 
 
@@ -59,6 +62,14 @@ function addSign(Player, signPosX,signPosY,signPosZ)
     Player:GetWorld():SetSignLines(signPosX,signPosY,signPosZ, "", "", "", "")
     return true
 end
+
+
+function updateSign(Player, signPosX,signPosY,signPosZ, line1, line2, line3, line4)
+    LOG("Update sign # : " .. signPosX .. " " .. signPosY .. " " .. signPosZ)
+    updateSign(UpdateQueue,signPosX,signPosY,signPosZ, line1, line2, line3, line4, 2)
+    return true
+end
+
 
 -- Gandi CLI: Disassemble a server
 -- Disassemble Gandi server
@@ -143,11 +154,25 @@ end
 function UpdateServer(Split, Player)
     LOG("Update server with name: " .. Split[3])
     
+
+    -- /gandi update server01 ipv4 6.6.6.6
     if Split[4] == "ipv4" then
         local sql = "UPDATE servers SET ipv4 = ? WHERE name = ?";
         local parameters = {Split[5], Split[3]};
         ExecuteStatement(sql, parameters);
     end
+
+
+    -- /gandi update server01 sign 1 test
+    if Split[4] == "sign" then
+        signX = CURRENTSERVERBLOCKX 
+        signY = CURRENTSERVERBLOCKY - 1
+        signZ = CURRENTSERVERBLOCKZ - 1
+        updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
+        LOG("Server update sign # : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+        Player:SendMessageSuccess("Server update sign: #" .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+    end
+
 
     Player:SendMessageSuccess("Updating done")   
 end
