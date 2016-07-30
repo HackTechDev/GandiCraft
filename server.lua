@@ -167,30 +167,30 @@ function UpdateServer(Split, Player)
     if Split[4] == "sign" then
 
 		if Split[5] == "1" then
-        	signX = CURRENTSERVERBLOCKX  
-        	signY = CURRENTSERVERBLOCKY - 1
-        	signZ = CURRENTSERVERBLOCKZ - 1
-        	updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
-        	LOG("Server update sign # : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
-        	Player:SendMessageSuccess("Server update sign: #" .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+			signX = CURRENTSERVERBLOCKX
+			signY = CURRENTSERVERBLOCKY - 1
+			signZ = CURRENTSERVERBLOCKZ - 1
+			updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
+			LOG("Server update sign #1 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+			Player:SendMessageSuccess("Server update sign #1 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
 		end
 
 		if Split[5] == "2" then
-        	signX = CURRENTSERVERBLOCKX + 1
-        	signY = CURRENTSERVERBLOCKY - 1
-        	signZ = CURRENTSERVERBLOCKZ - 1
-        	updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
-        	LOG("Server update sign # : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
-        	Player:SendMessageSuccess("Server update sign: #" .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+			signX = CURRENTSERVERBLOCKX + 1
+			signY = CURRENTSERVERBLOCKY - 1
+			signZ = CURRENTSERVERBLOCKZ - 1
+			updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
+			LOG("Server update sign #2 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+			Player:SendMessageSuccess("Server update sign #2 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
 		end
 
 		if Split[5] == "3" then
-        	signX = CURRENTSERVERBLOCKX + 2 
-        	signY = CURRENTSERVERBLOCKY - 1
-        	signZ = CURRENTSERVERBLOCKZ - 1
-        	updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
-        	LOG("Server update sign # : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
-        	Player:SendMessageSuccess("Server update sign: #" .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+			signX = CURRENTSERVERBLOCKX + 2
+			signY = CURRENTSERVERBLOCKY - 1
+			signZ = CURRENTSERVERBLOCKZ - 1
+			updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
+			LOG("Server update sign #3 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
+			Player:SendMessageSuccess("Server update sign #3 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
 		end
 
 
