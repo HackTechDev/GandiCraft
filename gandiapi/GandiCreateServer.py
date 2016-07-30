@@ -84,13 +84,11 @@ ips = ifaces[0]['ips']
 
 #pp.pprint(ips)
 
+
 # First ipv4 address
 IpAd1 = ips[0]['ip']
 
 pp.pprint(IpAd1) 
-
-
-
 
 
 # Send request to the Cuberite server
