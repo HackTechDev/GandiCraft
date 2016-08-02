@@ -148,9 +148,7 @@ end
 
 
 -- Server updating
--- (name, field, value)
--- /gandi update server01 ipv4 6.6.6.6
-
+-- servername field value
 function UpdateServer(Split, Player)
     LOG("Update server with name: " .. Split[3])
     
@@ -163,36 +161,65 @@ function UpdateServer(Split, Player)
     end
 
 
-    -- /gandi update server01 sign 1 test
+    -- /gandi update server01 sign 1 line1 line2 line3 line4
+    -- /gandi update server01 sing 2 lignea * ligneb *
     if Split[4] == "sign" then
+        line1 = ""
+        line2 = ""
+        line3 = ""
+        line4 = ""
 
+        -- Sign #
 		if Split[5] == "1" then
 			signX = CURRENTSERVERBLOCKX
 			signY = CURRENTSERVERBLOCKY - 1
 			signZ = CURRENTSERVERBLOCKZ - 1
-			updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
-			LOG("Server update sign #1 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
-			Player:SendMessageSuccess("Server update sign #1 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
 		end
 
 		if Split[5] == "2" then
 			signX = CURRENTSERVERBLOCKX + 1
 			signY = CURRENTSERVERBLOCKY - 1
 			signZ = CURRENTSERVERBLOCKZ - 1
-			updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
-			LOG("Server update sign #2 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
-			Player:SendMessageSuccess("Server update sign #2 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
 		end
 
 		if Split[5] == "3" then
 			signX = CURRENTSERVERBLOCKX + 2
 			signY = CURRENTSERVERBLOCKY - 1
 			signZ = CURRENTSERVERBLOCKZ - 1
-			updateSign(UpdateQueue, signX, signY , signZ, Split[6], "", "", "", 2)
-			LOG("Server update sign #3 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
-			Player:SendMessageSuccess("Server update sign #3 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. Split[6])
 		end
+        
+        -- Old Line #
+        local IsValid, line1old, line2old, line3old, line4old = Player:GetWorld():GetSignLines(signX, signY, signZ)
 
+         -- Line #
+        if Split[6] == nil or Split[6] == "*" then
+            line1 = line1old
+        else
+            line1 = Split[6] 
+        end
+
+        if Split[7] == nil or Split[7] == "*" then
+            line2 = line2old
+        else
+            line2 = Split[7] 
+        end
+
+        if Split[8] == nil or Split[8] == "*" then
+            line3 = line3old
+        else         
+            line3 = Split[8] 
+        end
+
+        if Split[9] == nil or Split[9] == "*" then
+            line4 = line4old
+        else
+            line4 = Split[9] 
+        end
+
+
+        updateSign(UpdateQueue, signX, signY , signZ, line1, line2, line3, line4, 2)
+        LOG("Server update sign #3 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. line1 .. " " .. line2 .. " " .. line3 .. " " .. line4)
+        Player:SendMessageSuccess("Server update sign #3 : " .. signX .. " " ..  signY  .. " " .. signZ .. " " .. Split[5] .. " " .. line1 .. " " .. line2 .. " " .. line3 .. " " .. line4)
 
     end
 
