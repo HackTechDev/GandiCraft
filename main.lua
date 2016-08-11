@@ -57,6 +57,7 @@ function Initialize(Plugin)
     -- Command Bindings
 
     cPluginManager.BindCommand("/gandi", "*", GandiCommand, " - Gandi CLI commands")
+    cPluginManager.BindCommand("/structure", "*", StructureCommand, " - Structure CLI commands")
 
     -- Web request
     Plugin:AddWebTab("Gandi",HandleRequest_Gandi)
@@ -160,7 +161,30 @@ function PlayerUsingBlock(Player, BlockX, BlockY, BlockZ, BlockFace, CursorX, Cu
     end
 end
 
+function StructureCommand(Split, Player)
+	LOG("StructureCommand")
 
+	
+    if table.getn(Split) > 0
+    then
+
+        LOG("Split[1]: " .. Split[1])
+
+        if Split[1] == "/structure"
+        then
+	    	if Split[2] == "build"
+            then
+	    		if Split[3] == "house"
+            	then
+					Structure(World, Player, Split)
+				end
+			end
+		end
+	end
+	
+
+	return true
+end 
 
 function GandiCommand(Split, Player)
 
