@@ -1,3 +1,5 @@
+-- main
+
 GROUND_LEVEL = 63
 
 GROUND_MIN_X = -50
@@ -17,6 +19,7 @@ CURRENTSERVERBLOCKX = 0;
 CURRENTSERVERBLOCKY = 0;
 CURRENTSERVERBLOCKZ = 0;
 
+
 -- Production
 PRODUCTION = 1
 
@@ -26,12 +29,12 @@ function Tick(TimeDelta)
     UpdateQueue:update(MAX_BLOCK_UPDATE_PER_TICK)
 end
 
+
 -- Plugin initialization
 function Initialize(Plugin)
     PLUGIN = Plugin;
     PLUGIN:SetName("GandiCraft");
     PLUGIN:SetVersion(1);
-
 
     -- Load the Info shared library:
     dofile(cPluginManager:GetPluginsPath() .. "/InfoReg.lua");
@@ -65,12 +68,10 @@ function Initialize(Plugin)
     -- make all players admin
     cRankManager:SetDefaultRank("Admin")
 
-
     ini = cIniFile();
 
     --Create a new config if this is the first load, otherwise load the existing config file
     LoadConfig();
-
 
     --Create a new database if this is the first load, otherwise open the existing one
     if not (cFile:IsFile(Plugin:GetLocalFolder() .. cFile:GetPathSeparator() .. config.dbname)) then -- If true, means database is deleted, or the plugin runs for the first time
@@ -87,6 +88,8 @@ function Initialize(Plugin)
     return true
 end
 
+
+--
 function OnDisable() -- Gets called when the plugin is unloaded, mostly when shutting down the server
     LOG("[" .. PLUGIN:GetName() .. "] Disabling " .. PLUGIN:GetName() .. " v" .. PLUGIN:GetVersion());
     db:close();
@@ -113,6 +116,7 @@ function WorldStarted(World)
     end 
 end
 
+
 --
 function PlayerJoined(Player)
     -- enable flying
@@ -121,6 +125,7 @@ function PlayerJoined(Player)
     -- refresh containers
     LOG("player joined")
 end
+
 
 -- 
 function PlayerUsingBlock(Player, BlockX, BlockY, BlockZ, BlockFace, CursorX, CursorY, CursorZ, BlockType, BlockMeta)
@@ -161,13 +166,13 @@ function PlayerUsingBlock(Player, BlockX, BlockY, BlockZ, BlockFace, CursorX, Cu
     end
 end
 
+
+--
 function StructureCommand(Split, Player)
 	LOG("StructureCommand")
-
 	
     if table.getn(Split) > 0
     then
-
         LOG("Split[1]: " .. Split[1])
 
         if Split[1] == "/structure"
@@ -181,11 +186,12 @@ function StructureCommand(Split, Player)
 			end
 		end
 	end
-	
 
 	return true
 end 
 
+
+--
 function GandiCommand(Split, Player)
 
     if table.getn(Split) > 0
@@ -233,9 +239,6 @@ function GandiCommand(Split, Player)
                     end
                 end
 
-
-
-
                 -- Create/Initialize a server 
                 -- with a fake ip address      
                 -- /gandi create <server name>         
@@ -278,7 +281,6 @@ function GandiCommand(Split, Player)
                     LOG("executed: " .. command .. " -> " .. tostring(r))
                 end
 
-
                 --               (name, field, value)
                 -- /gandi update server01 ipv3 6.6.6.6
                 if Split[2] == "update" 
@@ -286,9 +288,7 @@ function GandiCommand(Split, Player)
                     Player:SendMessage("Gandi CLI: update")
     
                     UpdateServer(Split, Player)
-
                 end
-
 
                 if Split[2] == "get" 
                 then
@@ -299,9 +299,7 @@ function GandiCommand(Split, Player)
                     GetServer(Split, Player)
 
                     Player:SendMessage("Gandi CLI: " .. command)
-    
                 end
-
 
                 if Split[2] == "list" 
                 then
@@ -312,9 +310,7 @@ function GandiCommand(Split, Player)
                     ListServer(Split, Player)
 
                     Player:SendMessage("Gandi CLI: " .. command)
-    
                 end
-
 
             end
         end
@@ -322,6 +318,7 @@ function GandiCommand(Split, Player)
 
     return true
 end
+
 
 -- Generate flat world
 function OnChunkGenerating(World, ChunkX, ChunkZ, ChunkDesc)
@@ -341,6 +338,7 @@ function OnWeatherChanging(World, Weather)
 end
 
 
+--
 function OnPlayerFoodLevelChange(Player, NewFoodLevel)
     -- Don't allow the player to get hungry
     return true, Player, NewFoodLevel
