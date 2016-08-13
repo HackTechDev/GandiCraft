@@ -1,3 +1,6 @@
+-- function.lua
+
+
 function GetTimestampFromString(timestring) --Returns the Lua timestamp from a string which is formatted as "YYYY-mm-dd HH:MM:SS"
 	local pattern = "(%d+)-(%d+)-(%d+) (%d+):(%d+):(%d+)";
 	local year, month, day, hour, minute, second = timestring:match(pattern);

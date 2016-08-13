@@ -1,3 +1,6 @@
+-- database.lua
+
+
 function ConfigureDatabase()
 	-- Create tables
 	local sqlCreate = {

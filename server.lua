@@ -1,3 +1,6 @@
+-- server.lua
+
+
 -- Gandi CLI: Assemble a server
 -- Assemble Gandi server
 -- http://api-docs.cuberite.org/Globals.html 

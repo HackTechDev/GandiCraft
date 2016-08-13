@@ -1,3 +1,6 @@
+-- web.lua
+
+
 -- Post URL:
 -- http://192.168.1.11:8080/webadmin/GandiCraft/Gandi?action=update&name=server01&field=ipv4&value=7.77.7.7
 function HandleRequest_Gandi(Request)
@@ -37,9 +40,7 @@ function HandleRequest_Gandi(Request)
 
     end
 
-
     content = content .. "[/gandiclient]"
 
     return content
 end
-

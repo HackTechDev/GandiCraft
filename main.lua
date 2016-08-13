@@ -1,4 +1,5 @@
--- main
+-- main.lua
+
 
 GROUND_LEVEL = 63
 

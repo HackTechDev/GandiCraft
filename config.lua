@@ -1,3 +1,6 @@
+-- config.lua
+
+
 config = {};
 
 function LoadConfig()

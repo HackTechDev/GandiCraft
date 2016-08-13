@@ -1,4 +1,4 @@
--- structure
+-- structure.lua
 
 -- /structure house build 4 6 3
 function Structure(World, Player, Split)
