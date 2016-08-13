@@ -29,9 +29,11 @@ Examples:
 
 ```
 /gandi update server01 ipv4 6.6.6.6  
+  
 /gandi update server01 sign 1 line1 line2 line3 line4  
 /gandi update server01 sign 2 lignea * ligneb *  
-
+  
+/structure house build 5 6 4  
 ```
   
   
