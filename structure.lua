@@ -1,5 +1,6 @@
 -- structure.lua
 
+
 -- /structure house build 4 6 3
 function Structure(World, Player, Split)
     LOG("Structure")
@@ -26,18 +27,15 @@ function Structure(World, Player, Split)
                                 setBlock(UpdateQueue, x, y, z, E_BLOCK_STONE, E_META_STONE_GRANITE)
                             end
 
-
                             for x  = Player:GetPosX(), Player:GetPosX() + length
                             do
                                 setBlock(UpdateQueue, x, y, z + width, E_BLOCK_STONE, E_META_STONE_GRANITE)
                             end
 
-
                             for z  = Player:GetPosZ() , Player:GetPosZ() + width
                             do
                                 setBlock(UpdateQueue, x, y, z, E_BLOCK_STONE, E_META_STONE_GRANITE)
                             end
-
 
                             for z  = Player:GetPosZ() , Player:GetPosZ() + width
                             do
