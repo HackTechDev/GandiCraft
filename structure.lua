@@ -78,6 +78,9 @@ function Structure(World, Player, Split)
             LOG("Help: /structure house <action>")
             Player:SendMessage("Help: /structure house <action>")
         end
+    elseif Split[2] == "castle" then
+        LOG("Structure:  Castle")
+        Player:SendMessage("Structure: Castle")
     else
         LOG("Help: /structure <structure name>")
         Player:SendMessage("Help: /structure <structure>")
